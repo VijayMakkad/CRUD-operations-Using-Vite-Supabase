@@ -2,13 +2,7 @@ h1 {
   text-align: center;
   margin: 3rem auto;
 }
-.container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 
-}
 table{
   border-collapse: collapse ;
   max-width: 900px;
@@ -40,7 +34,7 @@ h4{
   margin: 0;
 }
 button{
-  margin: 1rem 0;
+  margin: 1rem ;
 }
 
 h2{
@@ -48,9 +42,15 @@ h2{
   padding: 0;
   margin: 0;
 }
-.creation{
+.creation,.updation{
   border: 1px solid #827d7d;
   max-width: 250px;
   padding: 8px;
   margin-left: 2rem;
+}
+.operation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
