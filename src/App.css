@@ -1,16 +1,24 @@
 h1 {
   text-align: center;
-  margin: 3.5rem auto;
+  margin: 3rem auto;
 }
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+}
 table{
   border-collapse: collapse ;
   max-width: 900px;
   width: 100%;
-  margin: 2rem auto;
+  margin: 1rem auto;
 
 }
-
+.table{
+  margin: 1rem auto;
+}
 table th,table td{
   border: 1px solid #827d7d;
   padding: 8px;

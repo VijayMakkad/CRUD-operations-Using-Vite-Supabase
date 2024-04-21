@@ -20,7 +20,7 @@ function App() {
 
 //Read Operation
   async function fetchUsers(){
-    const {data,error}=await supabase.from("users").select('*')
+    const {data,error}=await supabase.from("users").select('*').order('id')
     setUsers(data)
     if(error)console.log(error)
     else{
@@ -30,18 +30,31 @@ function App() {
 
   //Creation Operation
 
-  async function createUsers(){
-    const {error}=await supabase.from('users').insert({name:user.name,age:parseInt(user.age)})
+  async function createUsers(e){
+    e.preventDefault()
+    const {error}=await supabase.from('users').insert([{name:user.name,age:user.age}])
+    if(error)console.log(error)
+    else{
+      console.log('User Created Successfully')
+      fetchUsers()
+      window.location.reload(); 
+    }
+  }
+
+  //Delete Operation
+
+  async function deleteUser(userId){
+    const {error}=await supabase.from('users').delete().eq('id',userId)
     if(error)console.log(error)
     else{
       fetchUsers()
-      console.log('User Created Successfully')
+      console.log('User Deleted Successfully')
     }
   }
 
   return (
     <>
-    <div className='heading'>
+    <div className='container'>
       <h1>Learning CRUD Operations</h1>
 <div className='creation'>
 
@@ -56,22 +69,24 @@ function App() {
     </form>
 </div>
 
-<h1>Table</h1>
+<h1 className='table'>Table</h1>
       <table>
         <thead>
           <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Age</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          {users.map((users)=>
-            <tr key={users.id}>
-              <td>{users.id}.</td>
-              <td>{users.name}</td>
-              <td>{users.age}</td>
+          {users.map((user)=>
+            <tr key={user.id}>
+              <td>{user.id}.</td>
+              <td>{user.name}</td>
+              <td>{user.age}</td>
+              <td><button onClick={()=>{deleteUser(user.id)}}>Delete</button></td>
             </tr>
             )}
         </tbody>
